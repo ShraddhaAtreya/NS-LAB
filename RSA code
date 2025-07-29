@@ -1,0 +1,25 @@
+RSA Encryption and Decryption 
+
+Aim:
+
+To implement RSA encryption and decryption using the PyCryptodome library in Python and compare standard and simplified approaches.
+
+
+Code
+from Crypto.PublicKey import RSA
+from Crypto.Cipher import PKCS1_OAEP
+
+# Generate RSA key pair
+key_pair = RSA.generate(2048)
+public_key = key_pair.publickey()
+
+# Encrypt the message
+encryption = PKCS1_OAEP.new(public_key)
+cipher_text = encryption.encrypt(b'Hello RSA')
+
+# Decrypt the message
+decryption = PKCS1_OAEP.new(key_pair)
+plain_text = decryption.decrypt(cipher_text)
+
+print("Encrypted:", cipher_text)
+print("Decrypted:", plain_text.decode())
